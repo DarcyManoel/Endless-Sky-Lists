@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<title>Lists</title>
+	</head>
+	<body>
+		<label id="loadFiles" for="file">&#10162; Upload Files</label>
+		<input class="hidden" id="file" type="file" webkitDirectory onChange="loadFiles(this)"/>
+		<label id="element" onClick="switchFilter()">Outfits</label>
+		<label id="output" onClick="copyOutput()"></label>
+	</body>
+	<script type="text/javascript" src="backend/actions.js"></script>
+	<script type="text/javascript" src="backend/processing.js"></script>
+</html>
