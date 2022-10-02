@@ -51,6 +51,12 @@ label:hover{
 	position:absolute;
 	top:20px;
 }
+.outfit{
+	border:1px solid #fff;
+	height:200px;
+	position:absolute;
+	width:200px;
+}
 #output{
 	height:calc(100% - 40px);
 	left:200px;
