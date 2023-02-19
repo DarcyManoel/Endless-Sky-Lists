@@ -8,8 +8,9 @@
 	<body>
 		<label id="loadFiles" for="file">&#10162; Upload Files</label>
 		<input class="hidden" id="file" type="file" webkitDirectory onChange="loadFiles(this)"/>
-		<label id="element" onClick="switchFilter()">Outfits</label>
-		<label id="output" onClick="copyOutput()"></label>
+		<label id="outfits" onClick="switchFilter()">Outfits</label>
+		<label id="copy" onClick="copyOutput()">Copy</label>
+		<p id="output"></p>
 	</body>
 	<script type="text/javascript" src="backend/actions.js"></script>
 	<script type="text/javascript" src="backend/processing.js"></script>
