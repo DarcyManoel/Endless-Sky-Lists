@@ -46,11 +46,23 @@ label:hover{
 	top:10px;
 	transform:translate(-50%,0);
 }
-#outfits{
+#omnisArenaMap{
 	left:20px;
 	position:absolute;
 	position:absolute;
 	top:20px;
+}
+#omnisArenaFleets{
+	left:20px;
+	position:absolute;
+	position:absolute;
+	top:40px;
+}
+#outfits{
+	left:20px;
+	position:absolute;
+	position:absolute;
+	top:60px;
 }
 #copy{
 	bottom:20px;

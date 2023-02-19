@@ -1,4 +1,4 @@
-var elements=[[]]
+var elements=[[],[]]
 var outfitKeywords=
 [
 	`category`,
@@ -311,7 +311,7 @@ var outfitKeywords=
 ]
 function loadFiles(that){
 	var files=event.target.files
-	elements=[[]]
+	elements=[[],[]]
 	for(i1=0;i1<files.length;i1++){
 		var systemsReader=new FileReader()
 		systemsReader.readAsText(files[i1])
@@ -360,16 +360,60 @@ function loadFiles(that){
 						}
 					}
 				}
+				//	Ships
+				if(lines[i2].startsWith(`ship `)){
+					if(!lines[i2].slice(5).includes(`" "`)){
+						elements[1].push([lines[i2].slice(5).replaceAll(`"`,``),[]])
+						for(i3=i2+1;i3<lines.length;i3++){
+							if(!lines[i3].startsWith(`\t`)){
+								break
+							}else if(lines[i3].replaceAll(`\t`,``).startsWith(`#`)){
+								continue
+							}
+							if(lines[i3].replaceAll(`\t`,``).startsWith(`sprite `)){
+								elements[1][elements[1].length-1][1].push(lines[i3].slice(8).replaceAll(`"`,``))
+							}
+						}
+					}
+				}
 			}
 		}
 	}
 	setTimeout(printOutput,500)
 }
 function printOutput(){
+	document.getElementById(`output`).innerHTML=``
 	switch(filter){
-		case `outfit `:
+		case `omnisArenaMap`:
+			var offset=0
+			var offsetStep=20
+			var radius=0
+			for(i1=0;i1<elements[1].length;i1++){
+				if(elements[1][i1][1].length){
+					document.getElementById(`output`).innerHTML+=`\tobject "`+elements[1][i1][0]+` "\n\t\tsprite "`+elements[1][i1][1]+`"\n\t\tdistance `+Math.round(800+(radius*800))+`\n\t\toffset `+Math.round(offset+offsetStep)+`\n`
+					offset+=offsetStep
+					if(offset>=360){
+						offset=0
+						offsetStep=offsetStep*.75
+						radius++
+					}
+				}
+			}
+			for(i1=0;i1<elements[1].length;i1++){
+				if(elements[1][i1][1].length){
+					document.getElementById(`output`).innerHTML+=`planet "`+elements[1][i1][0]+` "\n\tbribe 0\n\tgovernment "Arena"\n\ttribute 1\n\t\tthreshold 0\n\t\tfleet "`+elements[1][i1][0]+` "\n`
+				}
+			}
+			break
+		case `omnisArenaFleets`:
+			for(i1=0;i1<elements[1].length;i1++){
+				if(elements[1][i1][1].length){
+					document.getElementById(`output`).innerHTML+=`fleet "`+elements[1][i1][0]+` "\n\tgovernment "Arena"\n\tpersonality "heroic"\n\tvariant\n\t\t"`+elements[1][i1][0]+`"\n`
+				}
+			}
+			break
+		case `outfits`:
 			for(i1=0;i1<elements[0].length;i1++){
-				document.innerHTML+=`<div class="outfit" id="outfit`+i1+`"></div>`
 				document.getElementById(`output`).innerHTML+=`outfit `+elements[0][i1][0]+`\n`
 				for(i2=0;i2<elements[0][i1][1].length;i2++){
 					document.getElementById(`output`).innerHTML+=elements[0][i1][1][i2]+`\n`
