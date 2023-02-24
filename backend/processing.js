@@ -385,18 +385,15 @@ function printOutput(){
 	document.getElementById(`output`).innerHTML=``
 	switch(filter){
 		case `omnisArenaMap`:
-			var offset=0
-			var offsetStep=20
-			var radius=0
+			var shipsWithSprites=0
 			for(i1=0;i1<elements[1].length;i1++){
 				if(elements[1][i1][1].length){
-					document.getElementById(`output`).innerHTML+=`\tobject "`+elements[1][i1][0]+` "\n\t\tsprite "`+elements[1][i1][1]+`"\n\t\tdistance `+Math.round(800+(radius*800))+`\n\t\toffset `+Math.round(offset+offsetStep)+`\n`
-					offset+=offsetStep
-					if(offset>=360){
-						offset=0
-						offsetStep=offsetStep*.75
-						radius++
-					}
+					shipsWithSprites++
+				}
+			}
+			for(i1=0;i1<elements[1].length;i1++){
+				if(elements[1][i1][1].length){
+					document.getElementById(`output`).innerHTML+=`\tobject "`+elements[1][i1][0]+` "\n\t\tsprite "`+elements[1][i1][1]+`"\n\t\tdistance `+Math.round((shipsWithSprites*75)+300)+`\n\t\toffset `+Math.round((i1/shipsWithSprites)*360)+`\n`
 				}
 			}
 			for(i1=0;i1<elements[1].length;i1++){
