@@ -4,15 +4,15 @@ function switchFilter(id){
 		case `omnisArenaMap`:
 			filter=`omnisArenaMap`
 			break
-		case `omnisArenaFleets`:
-			filter=`omnisArenaFleets`
+		case `omnisSales`:
+			filter=`omnisSales`
 			break
 		case `outfits`:
 			filter=`outfits`
 			break
 	}
 	document.getElementById(`omnisArenaMap`).classList.add(`dark`)
-	document.getElementById(`omnisArenaFleets`).classList.add(`dark`)
+	document.getElementById(`omnisSales`).classList.add(`dark`)
 	document.getElementById(`outfits`).classList.add(`dark`)
 	document.getElementById(id).classList.remove(`dark`)
 	printOutput()

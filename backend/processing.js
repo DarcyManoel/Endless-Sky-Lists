@@ -321,7 +321,7 @@ function loadFiles(that){
 			for(i2=0;i2<lines.length;i2++){
 				//	Outfits
 				if(lines[i2].startsWith(`outfit `)){
-					elements[0].push([lines[i2].slice(7),[]])
+					elements[0].push([lines[i2].replaceAll(`"`,``).slice(7),[]])
 					for(i3=0;i3<outfitKeywords.length;i3++){
 						if(!Array.isArray(outfitKeywords[i3])){
 							for(i4=i2+1;i4<lines.length;i4++){
@@ -370,8 +370,8 @@ function loadFiles(that){
 							}else if(lines[i3].replaceAll(`\t`,``).startsWith(`#`)){
 								continue
 							}
-							if(lines[i3].replaceAll(`\t`,``).startsWith(`sprite `)){
-								elements[1][elements[1].length-1][1].push(lines[i3].slice(8).replaceAll(`"`,``))
+							if(lines[i3].replaceAll(`\t`,``).replaceAll(`"`,``).startsWith(`sprite `)){
+								elements[1][elements[1].length-1][1].push(lines[i3].replaceAll(`"`,``).slice(8))
 							}
 						}
 					}
@@ -386,6 +386,7 @@ function printOutput(){
 	switch(filter){
 		case `omnisArenaMap`:
 			var shipsWithSprites=0
+			document.getElementById(`output`).innerHTML+=`system " "\n\t"jump range" 3000\n\tgovernment "Arena"\n\tpos 0 0\n`
 			for(i1=0;i1<elements[1].length;i1++){
 				if(elements[1][i1][1].length){
 					shipsWithSprites++
@@ -401,23 +402,30 @@ function printOutput(){
 					document.getElementById(`output`).innerHTML+=`planet "`+elements[1][i1][0]+` "\n\tbribe 0\n\tgovernment "Arena"\n\ttribute 1\n\t\tthreshold 0\n\t\tfleet "`+elements[1][i1][0]+` "\n`
 				}
 			}
-			break
-		case `omnisArenaFleets`:
 			for(i1=0;i1<elements[1].length;i1++){
 				if(elements[1][i1][1].length){
 					document.getElementById(`output`).innerHTML+=`fleet "`+elements[1][i1][0]+` "\n\tgovernment "Arena"\n\tpersonality "heroic"\n\tvariant\n\t\t"`+elements[1][i1][0]+`"\n`
 				}
 			}
 			break
+		case `omnisSales`:
+			document.getElementById(`output`).innerHTML+=`outfitter ""\n`
+			for(i1=0;i1<elements[0].length;i1++){
+				document.getElementById(`output`).innerHTML+=`\t"`+elements[0][i1][0]+`"\n`
+			}
+			document.getElementById(`output`).innerHTML+=`shipyard ""\n`
+			for(i1=0;i1<elements[1].length;i1++){
+				document.getElementById(`output`).innerHTML+=`\t"`+elements[1][i1][0]+`"\n`
+			}
+			break
 		case `outfits`:
 			for(i1=0;i1<elements[0].length;i1++){
-				document.getElementById(`output`).innerHTML+=`outfit `+elements[0][i1][0]+`\n`
+				document.getElementById(`output`).innerHTML+=`outfit "`+elements[0][i1][0]+`"\n`
 				for(i2=0;i2<elements[0][i1][1].length;i2++){
 					document.getElementById(`output`).innerHTML+=elements[0][i1][1][i2]+`\n`
 				}
 			}
 			break
 	}
-	console.log(outfitKeywords)
 	console.log(elements)
 }
