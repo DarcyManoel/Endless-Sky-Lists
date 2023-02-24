@@ -386,15 +386,15 @@ function printOutput(){
 	switch(filter){
 		case `omnisArenaMap`:
 			var shipsWithSprites=0
-			document.getElementById(`output`).innerHTML+=`system " "\n\t"jump range" 3000\n\tgovernment "Arena"\n\tpos 0 0\n`
+			document.getElementById(`output`).innerHTML+=`system "Omnis"\n`
 			for(i1=0;i1<elements[1].length;i1++){
-				if(elements[1][i1][1].length){
-					shipsWithSprites++
+				if(!elements[1][i1][1].length){
+					elements[1].splice(i1,1)
 				}
 			}
 			for(i1=0;i1<elements[1].length;i1++){
 				if(elements[1][i1][1].length){
-					document.getElementById(`output`).innerHTML+=`\tobject "`+elements[1][i1][0]+` "\n\t\tsprite "`+elements[1][i1][1]+`"\n\t\tdistance `+Math.round((shipsWithSprites*75)+300)+`\n\t\toffset `+Math.round((i1/shipsWithSprites)*360)+`\n`
+					document.getElementById(`output`).innerHTML+=`\tadd object "`+elements[1][i1][0]+` "\n\t\tsprite "`+elements[1][i1][1]+`"\n\t\tdistance `+Math.round((elements[1].length*75)+300)+`\n\t\toffset `+Math.round((i1/elements[1].length)*36000)/100+`\n`
 				}
 			}
 			for(i1=0;i1<elements[1].length;i1++){
