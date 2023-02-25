@@ -8,7 +8,9 @@
 	<body>
 		<label id="loadFiles" for="file">&#10162; Upload Files</label>
 		<input class="hidden" id="file" type="file" webkitDirectory onChange="loadFiles(this)"/>
-		<label id="omnisArenaMap" onClick="switchFilter(this.id)">Omnis Arena Map</label>
+		<label id="omnisFleets" onClick="switchFilter(this.id)">Omnis Fleets</label>
+		<label id="omnisMap" class="dark" onClick="switchFilter(this.id)">Omnis Map</label>
+		<label id="omnisMissions" class="dark" onClick="switchFilter(this.id)">Omnis Missions</label>
 		<label id="omnisSales" class="dark" onClick="switchFilter(this.id)">Omnis Sales</label>
 		<label id="outfits" class="dark" onClick="switchFilter(this.id)">Outfits</label>
 		<label id="copy" onClick="copyOutput()">Copy</label>

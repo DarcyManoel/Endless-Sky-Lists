@@ -1,4 +1,7 @@
-var elements=[[],[]]
+var elements=[[],[],[]]
+//	Outfits
+//	Ships
+//	Systems
 var outfitKeywords=
 [
 	`category`,
@@ -311,7 +314,7 @@ var outfitKeywords=
 ]
 function loadFiles(that){
 	var files=event.target.files
-	elements=[[],[]]
+	elements=[[],[],[]]
 	for(i1=0;i1<files.length;i1++){
 		var systemsReader=new FileReader()
 		systemsReader.readAsText(files[i1])
@@ -376,17 +379,28 @@ function loadFiles(that){
 						}
 					}
 				}
+				//	Systems
+				if(lines[i2].startsWith(`system `)){
+					elements[2].push(lines[i2].slice(7).replaceAll(`"`,``))
+				}
 			}
 		}
 	}
-	setTimeout(printOutput,500)
+	printOutput()
 }
 function printOutput(){
 	document.getElementById(`output`).innerHTML=``
 	switch(filter){
-		case `omnisArenaMap`:
+		case `omnisFleets`:
+			for(i1=0;i1<elements[1].length;i1++){
+				if(elements[1][i1][1].length){
+					document.getElementById(`output`).innerHTML+=`fleet "`+elements[1][i1][0]+` "\n\tgovernment "Arena"\n\tpersonality "heroic"\n\tvariant\n\t\t"`+elements[1][i1][0]+`"\n`
+				}
+			}
+			break
+		case `omnisMap`:
 			var shipsWithSprites=0
-			document.getElementById(`output`).innerHTML+=`system "Omnis"\n`
+			document.getElementById(`output`).innerHTML+=`galaxy "omnis"\n\tpos 0 -10000\n\tsprite "sprite/milkyWayHalf"\nsystem "Omnis"\n\t"jump range" 3000\n\tgovernment "Omnis"\n\tpos 0 -10000\n\tobject\n\t\tsprite "star/nova"\n\tobject "Everything"\n\t\tsprite "star/nova-core"\n\tobject "Developer"\n\t\tdistance 300\n\t\tsprite "asteroid/yottrite/spin"\n\tobject "omnisGateway"\n\t\tdistance -300\n\t\tsprite "sprite/wispGreen"\n`
 			for(i1=0;i1<elements[1].length;i1++){
 				if(!elements[1][i1][1].length){
 					elements[1].splice(i1,1)
@@ -394,26 +408,28 @@ function printOutput(){
 			}
 			for(i1=0;i1<elements[1].length;i1++){
 				if(elements[1][i1][1].length){
-					document.getElementById(`output`).innerHTML+=`\tadd object "`+elements[1][i1][0]+` "\n\t\tsprite "`+elements[1][i1][1]+`"\n\t\tdistance `+Math.round((elements[1].length*75)+300)+`\n\t\toffset `+Math.round((i1/elements[1].length)*36000)/100+`\n`
+					document.getElementById(`output`).innerHTML+=`\tobject "`+elements[1][i1][0]+` "\n\t\tsprite "`+elements[1][i1][1]+`"\n\t\tdistance `+Math.round((elements[1].length*75)+300)+`\n\t\toffset `+Math.round((i1/elements[1].length)*36000)/100+`\n`
 				}
 			}
+			document.getElementById(`output`).innerHTML+=`planet "Everything"\n\tbribe 0\n\tdescription ""\n\toutfitter "everything"\n\tshipyard "everything"\n\tspaceport ""\nplanet "Developer"\n\tbribe 0\n\tdescription ""\n\toutfitter "omnis"\n\tshipyard "omnis"\n\tspaceport ""\nplanet "omnisGateway"\n\twormhole "omnisGateway"\nwormhole "omnisGateway"\n\tlink "Omnis" "Rutilicus"\n\tlink "Rutilicus" "Omnis"\nsystem "Rutilicus"\n\tadd object "omnisGateway"\n\t\tsprite "sprite/wispGreen"\n`
 			for(i1=0;i1<elements[1].length;i1++){
 				if(elements[1][i1][1].length){
 					document.getElementById(`output`).innerHTML+=`planet "`+elements[1][i1][0]+` "\n\tbribe 0\n\tgovernment "Arena"\n\ttribute 1\n\t\tthreshold 0\n\t\tfleet "`+elements[1][i1][0]+` "\n`
 				}
 			}
-			for(i1=0;i1<elements[1].length;i1++){
-				if(elements[1][i1][1].length){
-					document.getElementById(`output`).innerHTML+=`fleet "`+elements[1][i1][0]+` "\n\tgovernment "Arena"\n\tpersonality "heroic"\n\tvariant\n\t\t"`+elements[1][i1][0]+`"\n`
-				}
+			break
+		case `omnisMissions`:
+				document.getElementById(`output`).innerHTML+=`event "revealMap"\n`
+			for(i1=0;i1<elements[2].length;i1++){
+				document.getElementById(`output`).innerHTML+=`\tvisit "`+elements[2][i1]+`"\n`
 			}
 			break
 		case `omnisSales`:
-			document.getElementById(`output`).innerHTML+=`outfitter ""\n`
+			document.getElementById(`output`).innerHTML+=`outfitter "everything"\n`
 			for(i1=0;i1<elements[0].length;i1++){
 				document.getElementById(`output`).innerHTML+=`\t"`+elements[0][i1][0]+`"\n`
 			}
-			document.getElementById(`output`).innerHTML+=`shipyard ""\n`
+			document.getElementById(`output`).innerHTML+=`shipyard "everything"\n`
 			for(i1=0;i1<elements[1].length;i1++){
 				document.getElementById(`output`).innerHTML+=`\t"`+elements[1][i1][0]+`"\n`
 			}
