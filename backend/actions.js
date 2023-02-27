@@ -1,4 +1,4 @@
-var filter=`omnisFleets`
+var filter=``
 function switchFilter(id){
 	switch(id){
 		case `omnisFleets`:
