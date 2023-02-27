@@ -14,44 +14,7 @@ function loadFiles(that){
 			for(i2=0;i2<lines.length;i2++){
 				//	Outfits
 				if(lines[i2].startsWith(`outfit `)){
-					elements[0].push([lines[i2].replaceAll(`"`,``).slice(7),[]])
-					for(i3=0;i3<outfitKeywords.length;i3++){
-						if(!Array.isArray(outfitKeywords[i3])){
-							for(i4=i2+1;i4<lines.length;i4++){
-								if(!lines[i4].startsWith(`\t`)){
-									break
-								}else if(lines[i4].replaceAll(`\t`,``).startsWith(`#`)){
-									continue
-								}
-								if(lines[i4].replaceAll(`\t`,``).startsWith(outfitKeywords[i3])||lines[i4].replaceAll(`\t`,``).startsWith(`"`+outfitKeywords[i3]+`"`)){
-									elements[0][elements[0].length-1][1].push(lines[i4])
-								}
-							}
-						}else{
-							for(i4=i2+1;i4<lines.length;i4++){
-								if(!lines[i4].startsWith(`\t`)){
-									break
-								}else if(lines[i4].replaceAll(`\t`,``).startsWith(`#`)){
-									continue
-								}
-								if(lines[i4].replaceAll(`\t`,``).startsWith(outfitKeywords[i3][0])||lines[i4].replaceAll(`\t`,``).startsWith(`"`+outfitKeywords[i3][0]+`"`)){
-									elements[0][elements[0].length-1][1].push(lines[i4])
-								}
-							}
-							for(i4=0;i4<outfitKeywords[i3][1].length;i4++){
-								for(i5=i2+1;i5<lines.length;i5++){
-									if(!lines[i5].startsWith(`\t`)){
-										break
-									}else if(lines[i5].replaceAll(`\t`,``).startsWith(`#`)){
-										continue
-									}
-									if(lines[i5].replaceAll(`\t`,``).startsWith(outfitKeywords[i3][1][i4])||lines[i5].replaceAll(`\t`,``).startsWith(`"`+outfitKeywords[i3][1][i4]+`"`)){
-										elements[0][elements[0].length-1][1].push(lines[i5])
-									}
-								}
-							}
-						}
-					}
+					elements[0].push([lines[i2].slice(7),[]])
 				}
 				//	Ships
 				if(lines[i2].startsWith(`ship `)){
@@ -117,7 +80,7 @@ function printOutput(){
 		case `omnisSales`:
 			document.getElementById(`output`).innerHTML+=`outfitter "everything"\n`
 			for(i1=0;i1<elements[0].length;i1++){
-				document.getElementById(`output`).innerHTML+=`\t"`+elements[0][i1][0]+`"\n`
+				document.getElementById(`output`).innerHTML+=`\t`+elements[0][i1][0]+`\n`
 			}
 			document.getElementById(`output`).innerHTML+=`shipyard "everything"\n`
 			for(i1=0;i1<elements[1].length;i1++){
