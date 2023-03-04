@@ -18,7 +18,9 @@ function switchFilter(id){
 	document.getElementById(`omnisMap`).classList.add(`dark`)
 	document.getElementById(`omnisMissions`).classList.add(`dark`)
 	document.getElementById(`omnisSales`).classList.add(`dark`)
-	document.getElementById(id).classList.remove(`dark`)
+	if(id){
+		document.getElementById(id).classList.remove(`dark`)
+	}
 	printOutput()
 }
 function copyOutput(){

@@ -39,6 +39,8 @@ function loadFiles(that){
 			}
 		}
 	}
+	filter=``
+	switchFilter()
 	printOutput()
 }
 function printOutput(){
