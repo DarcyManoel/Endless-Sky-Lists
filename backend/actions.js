@@ -4,8 +4,12 @@ function switchFilter(id){
 		case `omnis`:
 			filter=`omnis`
 			break
+		case `omnisCompat`:
+			filter=`omnisCompat`
+			break
 	}
 	document.getElementById(`omnis`).classList.add(`dark`)
+	document.getElementById(`omnisCompat`).classList.add(`dark`)
 	if(id){
 		document.getElementById(id).classList.remove(`dark`)
 	}

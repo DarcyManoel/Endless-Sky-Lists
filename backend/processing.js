@@ -78,6 +78,21 @@ function printOutput(){
 				document.getElementById(`output`).innerHTML+=`\t"`+elements[1][i1][0]+`"\n`
 			}
 			break
+		case `omnisCompat`:
+			document.getElementById(`output`).innerHTML+=`#\tSales\n`
+			if(elements[0].length){
+				document.getElementById(`output`).innerHTML+=`outfitter "everything"\n`
+				for(i1=0;i1<elements[0].length;i1++){
+					document.getElementById(`output`).innerHTML+=`\t`+elements[0][i1][0]+`\n`
+				}
+			}
+			if(elements[1].length){
+				document.getElementById(`output`).innerHTML+=`shipyard "everything"\n`
+				for(i1=0;i1<elements[1].length;i1++){
+					document.getElementById(`output`).innerHTML+=`\t"`+elements[1][i1][0]+`"\n`
+				}
+			}
+			break
 	}
 	console.log(elements)
 }
