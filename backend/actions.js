@@ -1,23 +1,11 @@
 var filter=``
 function switchFilter(id){
 	switch(id){
-		case `omnisFleets`:
-			filter=`omnisFleets`
-			break
-		case `omnisMap`:
-			filter=`omnisMap`
-			break
-		case `omnisMissions`:
-			filter=`omnisMissions`
-			break
-		case `omnisSales`:
-			filter=`omnisSales`
+		case `omnis`:
+			filter=`omnis`
 			break
 	}
-	document.getElementById(`omnisFleets`).classList.add(`dark`)
-	document.getElementById(`omnisMap`).classList.add(`dark`)
-	document.getElementById(`omnisMissions`).classList.add(`dark`)
-	document.getElementById(`omnisSales`).classList.add(`dark`)
+	document.getElementById(`omnis`).classList.add(`dark`)
 	if(id){
 		document.getElementById(id).classList.remove(`dark`)
 	}

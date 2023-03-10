@@ -46,29 +46,11 @@ label:hover{
 	top:10px;
 	transform:translate(-50%,0);
 }
-#omnisFleets{
+#omnis{
 	left:20px;
 	position:absolute;
 	position:absolute;
 	top:20px;
-}
-#omnisMap{
-	left:20px;
-	position:absolute;
-	position:absolute;
-	top:40px;
-}
-#omnisMissions{
-	left:20px;
-	position:absolute;
-	position:absolute;
-	top:60px;
-}
-#omnisSales{
-	left:20px;
-	position:absolute;
-	position:absolute;
-	top:80px;
 }
 #copy{
 	bottom:20px;
