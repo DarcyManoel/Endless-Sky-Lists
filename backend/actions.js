@@ -10,10 +10,14 @@ function switchFilter(id){
 		case `boardingEase`:
 			filter=`boardingEase`
 			break
+		case `noAsteroids`:
+			filter=`noAsteroids`
+			break
 	}
 	document.getElementById(`omnis`).classList.add(`dark`)
 	document.getElementById(`omnisCompat`).classList.add(`dark`)
 	document.getElementById(`boardingEase`).classList.add(`dark`)
+	document.getElementById(`noAsteroids`).classList.add(`dark`)
 	if(id){
 		document.getElementById(id).classList.remove(`dark`)
 	}
