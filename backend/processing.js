@@ -19,7 +19,7 @@ function loadFiles(that){
 				//	Ships
 				if(lines[i2].startsWith(`ship `)){
 					if(!lines[i2].slice(5).includes(`" "`)){
-						elements[1].push([lines[i2].slice(5).replaceAll(`"`,``),[]])
+						elements[1].push([lines[i2].slice(5).replaceAll(`"`,``),[],[]])
 						for(i3=i2+1;i3<lines.length;i3++){
 							if(!lines[i3].startsWith(`\t`)){
 								break
@@ -27,7 +27,10 @@ function loadFiles(that){
 								continue
 							}
 							if(lines[i3].replaceAll(`\t`,``).replaceAll(`"`,``).startsWith(`sprite `)){
-								elements[1][elements[1].length-1][1].push(lines[i3].replaceAll(`"`,``).slice(8))
+								elements[1][elements[1].length-1][1]=(lines[i3].replaceAll(`"`,``).slice(8))
+							}
+							if(lines[i3].replaceAll(`\t`,``).replaceAll(`"`,``).startsWith(`self destruct `)){
+								elements[1][elements[1].length-1][2]=(lines[i3].replaceAll(`"`,``).slice(16))
 							}
 						}
 					}
@@ -90,6 +93,14 @@ function printOutput(){
 				document.getElementById(`output`).innerHTML+=`shipyard "everything"\n`
 				for(i1=0;i1<elements[1].length;i1++){
 					document.getElementById(`output`).innerHTML+=`\t"`+elements[1][i1][0]+`"\n`
+				}
+			}
+			break
+		case `boardingEase`:
+			document.getElementById(`output`).innerHTML+=`#\tOverride\n`
+			for(i1=0;i1<elements[1].length;i1++){
+				if(elements[1][i1][2].length){
+					document.getElementById(`output`).innerHTML+=`ship "`+elements[1][i1][0]+`"\n\tattributes\n\t\t"self destruct" `+elements[1][i1][2]/2+`\n`
 				}
 			}
 			break
