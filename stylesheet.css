@@ -76,7 +76,7 @@ label:hover{
 	position:absolute;
 }
 #output{
-	height:calc(100% - 40px);
+	height:calc(100% - 60px);
 	left:200px;
 	overflow:scroll;
 	position:absolute;
