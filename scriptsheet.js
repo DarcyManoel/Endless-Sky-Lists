@@ -1,12 +1,13 @@
-var elements=[[],[],[]]
+var elements=[[],[],[],[]]
 	//	Outfits
 	//	Ships
 	//	Systems
+	//	Persons
 var filter=``
 //	Actions
 function actionUpload(that){
 	var files=event.target.files
-	elements=[[],[],[]]
+	elements=[[],[],[],[]]
 	for(i1=0;i1<files.length;i1++){
 		var systemsReader=new FileReader()
 		systemsReader.readAsText(files[i1])
@@ -43,11 +44,15 @@ function actionUpload(that){
 				if(lines[i2].startsWith(`system `)){
 					elements[2].push(lines[i2].slice(7).replaceAll(`"`,``))
 				}
+				//	Persons
+				if(lines[i2].startsWith(`person `)){
+					elements[3].push(lines[i2].slice(7).replaceAll(`"`,``))
+				}
 			}
 		}
 	}
 	filter=``
-	switchFilter()
+	actionFilter()
 	printOutput()
 }
 function actionFilter(id){
@@ -64,11 +69,15 @@ function actionFilter(id){
 		case `noAsteroids`:
 			filter=`noAsteroids`
 			break
+		case `noPersons`:
+			filter=`noPersons`
+			break
 	}
 	document.getElementById(`omnis`).classList.add(`dark`)
 	document.getElementById(`omnisCompat`).classList.add(`dark`)
 	document.getElementById(`boardingEase`).classList.add(`dark`)
 	document.getElementById(`noAsteroids`).classList.add(`dark`)
+	document.getElementById(`noPersons`).classList.add(`dark`)
 	if(id){
 		document.getElementById(id).classList.remove(`dark`)
 	}
@@ -141,6 +150,12 @@ function printOutput(){
 		case `noAsteroids`:
 			for(i1=0;i1<elements[2].length;i1++){
 				document.getElementById(`output`).innerHTML+=`system "`+elements[2][i1]+`"\n\tasteroids 0\n`
+			}
+			break
+		case `noPersons`:
+			document.getElementById(`output`).innerHTML+=`#\tDisabled\ndisable persons\n`
+			for(i1=0;i1<elements[3].length;i1++){
+				document.getElementById(`output`).innerHTML+=`\t"`+elements[3][i1]+`"\n`
 			}
 			break
 	}
