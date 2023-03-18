@@ -1,8 +1,10 @@
 var elements=[[],[],[]]
-//	Outfits
-//	Ships
-//	Systems
-function loadFiles(that){
+	//	Outfits
+	//	Ships
+	//	Systems
+var filter=``
+//	Actions
+function actionUpload(that){
 	var files=event.target.files
 	elements=[[],[],[]]
 	for(i1=0;i1<files.length;i1++){
@@ -46,6 +48,36 @@ function loadFiles(that){
 	switchFilter()
 	printOutput()
 }
+function actionFilter(id){
+	switch(id){
+		case `omnis`:
+			filter=`omnis`
+			break
+		case `omnisCompat`:
+			filter=`omnisCompat`
+			break
+		case `boardingEase`:
+			filter=`boardingEase`
+			break
+		case `noAsteroids`:
+			filter=`noAsteroids`
+			break
+	}
+	document.getElementById(`omnis`).classList.add(`dark`)
+	document.getElementById(`omnisCompat`).classList.add(`dark`)
+	document.getElementById(`boardingEase`).classList.add(`dark`)
+	document.getElementById(`noAsteroids`).classList.add(`dark`)
+	if(id){
+		document.getElementById(id).classList.remove(`dark`)
+	}
+	printOutput()
+}
+function actionCopy(){
+	navigator.clipboard.writeText(
+		document.getElementById(`output`).innerHTML
+	)
+}
+//	Display Text
 function printOutput(){
 	document.getElementById(`output`).innerHTML=``
 	switch(filter){

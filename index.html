@@ -7,14 +7,13 @@
 	</head>
 	<body>
 		<label id="loadFiles" for="file">&#10162; Upload Files</label>
-		<input class="hidden" id="file" type="file" webkitDirectory onChange="loadFiles(this)"/>
-		<label id="omnis" class="dark" onClick="switchFilter(this.id)">Omnis</label>
-		<label id="omnisCompat" class="dark" onClick="switchFilter(this.id)">Omnis Compat</label>
-		<label id="boardingEase" class="dark" onClick="switchFilter(this.id)">Boarding Ease</label>
-		<label id="noAsteroids" class="dark" onClick="switchFilter(this.id)">No Asteroids</label>
-		<label id="copy" onClick="copyOutput()">Copy</label>
+		<input class="hidden" id="file" type="file" webkitDirectory onChange="actionUpload(this)"/>
+		<label id="omnis" class="dark" onClick="actionFilter(this.id)">Omnis</label>
+		<label id="omnisCompat" class="dark" onClick="actionFilter(this.id)">Omnis Compat</label>
+		<label id="boardingEase" class="dark" onClick="actionFilter(this.id)">Boarding Ease</label>
+		<label id="noAsteroids" class="dark" onClick="actionFilter(this.id)">No Asteroids</label>
+		<label id="copy" onClick="actionCopy()">Copy</label>
 		<p id="output"></p>
 	</body>
-	<script type="text/javascript" src="backend/actions.js"></script>
-	<script type="text/javascript" src="backend/processing.js"></script>
+	<script type="text/javascript" src="scriptsheet.js"></script>
 </html>
