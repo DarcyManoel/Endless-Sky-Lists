@@ -32,7 +32,9 @@ function actionUpload(that){
 								elements[1][elements[1].length-1][1]=(lines[i3].replaceAll(`"`,``).slice(8))
 							}
 							if(lines[i3].replaceAll(`\t`,``).replaceAll(`"`,``).startsWith(`self destruct `)){
-								elements[1][elements[1].length-1][2]=(lines[i3].replaceAll(`"`,``).slice(16))
+								if(lines[i3].replaceAll(`"`,``).slice(16)!=1){
+									elements[1][elements[1].length-1][2]=(lines[i3].replaceAll(`"`,``).slice(16))
+								}
 							}
 						}
 					}
