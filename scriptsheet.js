@@ -6,6 +6,9 @@ var elements=[[],[],[],[]]
 var filter=``
 //	Actions
 function actionUpload(that){
+	document.querySelectorAll('.filter').forEach((element)=>{
+		element.classList.remove('blocked')
+	})
 	var files=event.target.files
 	elements=[[],[],[],[]]
 	for(i1=0;i1<files.length;i1++){

@@ -8,12 +8,12 @@
 	<body>
 		<label id="loadFiles" for="file">&#10162; Upload Files</label>
 		<input class="hidden" id="file" type="file" webkitDirectory onChange="actionUpload(this)"/>
-		<label id="omnis" class="filter dark" onClick="actionFilter(this.id)">Omnis</label>
-		<label id="omnisCompat" class="filter dark" onClick="actionFilter(this.id)">Omnis Compat</label>
-		<label id="boardingEase" class="filter dark" onClick="actionFilter(this.id)">Boarding Ease</label>
-		<label id="noAsteroids" class="filter dark" onClick="actionFilter(this.id)">No Asteroids</label>
-		<label id="noPersons" class="filter dark" onClick="actionFilter(this.id)">No Persons</label>
-		<label id="slowShips" class="filter dark" onClick="actionFilter(this.id)">Slow Ships</label>
+		<label id="omnis" class="blocked dark filter" onClick="actionFilter(this.id)">Omnis</label>
+		<label id="omnisCompat" class="blocked dark filter" onClick="actionFilter(this.id)">Omnis Compat</label>
+		<label id="boardingEase" class="blocked dark filter" onClick="actionFilter(this.id)">Boarding Ease</label>
+		<label id="noAsteroids" class="blocked dark filter" onClick="actionFilter(this.id)">No Asteroids</label>
+		<label id="noPersons" class="blocked dark filter" onClick="actionFilter(this.id)">No Persons</label>
+		<label id="slowShips" class="blocked dark filter" onClick="actionFilter(this.id)">Slow Ships</label>
 		<label id="copy" onClick="actionCopy()">Copy</label>
 		<p id="output"></p>
 	</body>
