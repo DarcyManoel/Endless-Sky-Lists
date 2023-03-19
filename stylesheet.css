@@ -25,6 +25,10 @@ label:hover{
 	animation:highlightOn .5s forwards;
 	cursor:pointer;
 }
+.filter{
+	left:20px;
+	position:absolute;
+}
 .blocked,
 .blocked label{
 	animation:none;
@@ -47,39 +51,21 @@ label:hover{
 	transform:translate(-50%,0);
 }
 #omnis{
-	left:20px;
-	position:absolute;
-	position:absolute;
 	top:20px;
 }
 #omnisCompat{
-	left:20px;
-	position:absolute;
-	position:absolute;
 	top:40px;
 }
 #boardingEase{
-	left:20px;
-	position:absolute;
-	position:absolute;
 	top:60px;
 }
 #noAsteroids{
-	left:20px;
-	position:absolute;
-	position:absolute;
 	top:80px;
 }
 #noPersons{
-	left:20px;
-	position:absolute;
-	position:absolute;
 	top:100px;
 }
 #slowShips{
-	left:20px;
-	position:absolute;
-	position:absolute;
 	top:120px;
 }
 #copy{

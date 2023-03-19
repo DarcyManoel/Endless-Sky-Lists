@@ -77,39 +77,14 @@ function actionUpload(that){
 		}
 	}
 	filter=``
-	actionFilter()
 	printOutput()
 }
 function actionFilter(id){
-	switch(id){
-		case `omnis`:
-			filter=`omnis`
-			break
-		case `omnisCompat`:
-			filter=`omnisCompat`
-			break
-		case `boardingEase`:
-			filter=`boardingEase`
-			break
-		case `noAsteroids`:
-			filter=`noAsteroids`
-			break
-		case `noPersons`:
-			filter=`noPersons`
-			break
-		case `slowShips`:
-			filter=`slowShips`
-			break
-	}
-	document.getElementById(`omnis`).classList.add(`dark`)
-	document.getElementById(`omnisCompat`).classList.add(`dark`)
-	document.getElementById(`boardingEase`).classList.add(`dark`)
-	document.getElementById(`noAsteroids`).classList.add(`dark`)
-	document.getElementById(`noPersons`).classList.add(`dark`)
-	document.getElementById(`slowShips`).classList.add(`dark`)
-	if(id){
-		document.getElementById(id).classList.remove(`dark`)
-	}
+	filter=id
+	document.querySelectorAll('.filter').forEach((element)=>{
+		element.classList.add('dark')
+	})
+	document.getElementById(id).classList.remove(`dark`)
 	printOutput()
 }
 function actionCopy(){
