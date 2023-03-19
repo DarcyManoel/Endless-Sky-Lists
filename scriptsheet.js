@@ -18,6 +18,31 @@ function actionUpload(that){
 				//	Outfits
 				if(lines[i2].startsWith(`outfit `)){
 					elements[0].push([lines[i2].slice(7),[]])
+					for(i3=i2+1;i3<lines.length;i3++){
+						if(!lines[i3].startsWith(`\t`)){
+							break
+						}else if(lines[i3].replaceAll(`\t`,``).startsWith(`#`)){
+							continue
+						}
+						if(lines[i3].replaceAll(`\t`,``).replaceAll(`"`,``).startsWith(`category `)){
+							elements[0][elements[0].length-1][1]=[lines[i3].replaceAll(`"`,``).slice(10),[``,``]]
+							if(lines[i3].replaceAll(`"`,``).slice(10)==`Engines`){
+								for(i4=i3+1;i4<lines.length;i4++){
+									if(!lines[i4].startsWith(`\t`)){
+										break
+									}else if(lines[i4].replaceAll(`\t`,``).startsWith(`#`)){
+										continue
+									}
+									if(lines[i4].replaceAll(`\t`,``).replaceAll(`"`,``).startsWith(`thrust `)){
+										elements[0][elements[0].length-1][1][1][0]=lines[i4].replaceAll(`"`,``).slice(8)
+									}
+									if(lines[i4].replaceAll(`\t`,``).replaceAll(`"`,``).startsWith(`turn `)){
+										elements[0][elements[0].length-1][1][1][1]=lines[i4].replaceAll(`"`,``).slice(6)
+									}
+								}
+							}
+						}
+					}
 				}
 				//	Ships
 				if(lines[i2].startsWith(`ship `)){
@@ -72,12 +97,16 @@ function actionFilter(id){
 		case `noPersons`:
 			filter=`noPersons`
 			break
+		case `slowShips`:
+			filter=`slowShips`
+			break
 	}
 	document.getElementById(`omnis`).classList.add(`dark`)
 	document.getElementById(`omnisCompat`).classList.add(`dark`)
 	document.getElementById(`boardingEase`).classList.add(`dark`)
 	document.getElementById(`noAsteroids`).classList.add(`dark`)
 	document.getElementById(`noPersons`).classList.add(`dark`)
+	document.getElementById(`slowShips`).classList.add(`dark`)
 	if(id){
 		document.getElementById(id).classList.remove(`dark`)
 	}
@@ -156,6 +185,23 @@ function printOutput(){
 			document.getElementById(`output`).innerHTML+=`#\tDisabled\ndisable persons\n`
 			for(i1=0;i1<elements[3].length;i1++){
 				document.getElementById(`output`).innerHTML+=`\t"`+elements[3][i1]+`"\n`
+			}
+			break
+		case `slowShips`:
+			document.getElementById(`output`).innerHTML+=`#\tOverride\n#\t\tShips\n`
+			for(i1=0;i1<elements[1].length;i1++){
+				document.getElementById(`output`).innerHTML+=`ship "`+elements[1][i1][0]+`"\n\tattributes\n\t\tdrag .01\n`
+			}
+			document.getElementById(`output`).innerHTML+=`#\t\tEngines\n`
+			for(i1=0;i1<elements[0].length;i1++){
+				if(elements[0][i1][1][0]==`Engines`){
+					if(elements[0][i1][1][1][0]){
+						document.getElementById(`output`).innerHTML+=`outfit `+elements[0][i1][0]+`\n\t"reverse thrust" `+Math.round(elements[0][i1][1][1][0]*16)/100+`\n\tthrust `+Math.round(elements[0][i1][1][1][0]*20)/100+`\n`
+					}
+					if(elements[0][i1][1][1][1]){
+						document.getElementById(`output`).innerHTML+=`outfit `+elements[0][i1][0]+`\n\tturn `+Math.round(elements[0][i1][1][1][1]*10)/100+`\n`
+					}
+				}
 			}
 			break
 	}
