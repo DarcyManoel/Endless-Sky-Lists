@@ -6,7 +6,7 @@ var elements=[[],[],[],[]]
 var filter=``
 //	Actions
 function actionUpload(that){
-	document.querySelectorAll('.filter').forEach((element)=>{
+	document.querySelectorAll('.blocked').forEach((element)=>{
 		element.classList.remove('blocked')
 	})
 	var files=event.target.files
