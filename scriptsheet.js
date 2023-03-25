@@ -160,7 +160,7 @@ function printOutput(){
 			}
 			break
 		case `noPersons`:
-			document.getElementById(`output`).innerHTML+=`#\tDisabled\ndisable persons\n`
+			document.getElementById(`output`).innerHTML+=`#\tDisabled\ndisable person\n`
 			for(i1=0;i1<elements[3].length;i1++){
 				document.getElementById(`output`).innerHTML+=`\t"`+elements[3][i1]+`"\n`
 			}
