@@ -101,7 +101,7 @@ function printOutput(){
 	switch(filter){
 		case `omnis`:
 			var shipsWithSprites=0
-			document.getElementById(`output`).innerHTML+=`#\tArena\nsystem "Omnis"\n\tadd object\n`
+			document.getElementById(`output`).innerHTML+=`#\tArena\nsystem "Omnis"\n\tpos 0 -10000\n\tadd object\n`
 			for(i1=0;i1<elements[1].length;i1++){
 				if(!elements[1][i1][1].length){
 					elements[1].splice(i1,1)
