@@ -1,4 +1,4 @@
-var elements=[[],[],[],[]]
+var elements=[[],[],[],[],[]]
 	//	Outfits
 	//	Ships
 	//	Systems
@@ -10,7 +10,7 @@ function actionUpload(that){
 		element.classList.remove('blocked')
 	})
 	var files=event.target.files
-	elements=[[],[],[],[]]
+	elements=[[],[],[],[],[]]
 	for(i1=0;i1<files.length;i1++){
 		var systemsReader=new FileReader()
 		systemsReader.readAsText(files[i1])
@@ -76,6 +76,20 @@ function actionUpload(that){
 				if(lines[i2].startsWith(`person `)){
 					elements[3].push(lines[i2].slice(7).replaceAll(`"`,``))
 				}
+				//	Governments
+				if(lines[i2].startsWith(`government `)){
+					elements[4].push([lines[i2].slice(11).replaceAll(`"`,``),[]])
+					for(i3=i2+1;i3<lines.length;i3++){
+						if(!lines[i3].startsWith(`\t`)){
+							break
+						}else if(lines[i3].replaceAll(`\t`,``).startsWith(`#`)){
+							continue
+						}
+						if(lines[i3].replaceAll(`\t`,``).replaceAll(`"`,``).startsWith(`player reputation `)){
+							elements[4][elements[4].length-1][1]=lines[i3].replaceAll(`"`,``).slice(19)
+						}
+					}
+				}
 			}
 		}
 	}
@@ -118,6 +132,13 @@ function printOutput(){
 					document.getElementById(`output`).innerHTML+=`fleet "`+elements[1][i1][0]+` "\n\tgovernment "Arena"\n\tpersonality "heroic"\n\tvariant\n\t\t"`+elements[1][i1][0]+`"\n`
 				}
 			}
+			document.getElementById(`output`).innerHTML+=`#\tJobs\nmission "resetReputation"\n\tdescription "Reset reputation of all factions to game default."\n\tjob\n\tname "Reset Reputation"\n\ton accept\n`
+			for(i1=0;i1<elements[4].length;i1++){
+				if(elements[4][i1][1].length){
+					document.getElementById(`output`).innerHTML+=`\t\t"reputation: `+elements[4][i1][0]+`" = `+elements[4][i1][1]+`\n`
+				}
+			}
+			document.getElementById(`output`).innerHTML+=`\trepeat\n\tsource\n\t\tgovernment "Omnis"\n`
 			document.getElementById(`output`).innerHTML+=`#\tMapping\nevent "revealMap"\n`
 			for(i1=0;i1<elements[2].length;i1++){
 				document.getElementById(`output`).innerHTML+=`\tvisit "`+elements[2][i1]+`"\n`
