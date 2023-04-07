@@ -175,11 +175,6 @@ function printOutput(){
 				}
 			}
 			break
-		case `noAsteroids`:
-			for(i1=0;i1<elements[2].length;i1++){
-				document.getElementById(`output`).innerHTML+=`system "`+elements[2][i1]+`"\n\tasteroids 0\n`
-			}
-			break
 		case `noPersons`:
 			document.getElementById(`output`).innerHTML+=`#\tDisabled\ndisable person\n`
 			for(i1=0;i1<elements[3].length;i1++){
