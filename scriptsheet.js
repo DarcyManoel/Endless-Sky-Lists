@@ -167,14 +167,6 @@ function printOutput(){
 				}
 			}
 			break
-		case `boardingEase`:
-			document.getElementById(`output`).innerHTML+=`#\tOverride\n`
-			for(i1=0;i1<elements[1].length;i1++){
-				if(elements[1][i1][2].length){
-					document.getElementById(`output`).innerHTML+=`ship "`+elements[1][i1][0]+`"\n\tattributes\n\t\t"self destruct" `+elements[1][i1][2]/2+`\n`
-				}
-			}
-			break
 		case `noPersons`:
 			document.getElementById(`output`).innerHTML+=`#\tDisabled\ndisable person\n`
 			for(i1=0;i1<elements[3].length;i1++){
