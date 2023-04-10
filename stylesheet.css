@@ -51,11 +51,14 @@ label:hover{
 	top:10px;
 	transform:translate(-50%,0);
 }
-#omnisSales{
+#omnisArena{
 	top:20px;
 }
-#noPersons{
+#omnisSales{
 	top:40px;
+}
+#noPersons{
+	top:60px;
 }
 #copy{
 	bottom:20px;

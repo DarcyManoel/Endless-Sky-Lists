@@ -114,24 +114,6 @@ function printOutput(){
 	document.getElementById(`output`).innerHTML=``
 	switch(filter){
 		case `omnis`:
-			var shipsWithSprites=0
-			document.getElementById(`output`).innerHTML+=`#\tArena\nsystem "Omnis"\n\tpos 0 -10000\n\tadd object\n`
-			for(i1=0;i1<elements[1].length;i1++){
-				if(!elements[1][i1][1].length){
-					elements[1].splice(i1,1)
-				}
-			}
-			for(i1=0;i1<elements[1].length;i1++){
-				if(elements[1][i1][1].length){
-					document.getElementById(`output`).innerHTML+=`\t\tobject "`+elements[1][i1][0]+` "\n\t\t\tdistance `+Math.round((elements[1].length*75)+300)+`\n\t\t\toffset `+Math.round((i1/elements[1].length)*36000)/100+`\n\t\t\tsprite "`+elements[1][i1][1]+`"\n`
-				}
-			}
-			for(i1=0;i1<elements[1].length;i1++){
-				if(elements[1][i1][1].length){
-					document.getElementById(`output`).innerHTML+=`planet "`+elements[1][i1][0]+` "\n\tbribe 0\n\tgovernment "Arena"\n\ttribute 1\n\t\tfleet "`+elements[1][i1][0]+` "\n\t\tthreshold 0\n`
-					document.getElementById(`output`).innerHTML+=`fleet "`+elements[1][i1][0]+` "\n\tgovernment "Arena"\n\tpersonality "heroic"\n\tvariant\n\t\t"`+elements[1][i1][0]+`"\n`
-				}
-			}
 			document.getElementById(`output`).innerHTML+=`#\tJobs\nmission "resetReputation"\n\tdescription "Reset reputation of all factions to game default."\n\tjob\n\tname "Reset Reputation"\n\ton accept\n`
 			for(i1=0;i1<elements[4].length;i1++){
 				if(elements[4][i1][1].length){
@@ -142,6 +124,26 @@ function printOutput(){
 			document.getElementById(`output`).innerHTML+=`#\tMapping\nevent "revealMap"\n`
 			for(i1=0;i1<elements[2].length;i1++){
 				document.getElementById(`output`).innerHTML+=`\tvisit "`+elements[2][i1]+`"\n`
+			}
+			break
+		case `omnisArena`:
+			document.getElementById(`output`).innerHTML+=`system "Omnis"\n`
+			for(i1=0;i1<elements[1].length;i1++){
+				if(!elements[1][i1][1].length){
+					elements[1].splice(i1,1)
+				}
+			}
+			for(i1=0;i1<elements[1].length;i1++){
+				if(elements[1][i1][1].length){
+					document.getElementById(`output`).innerHTML+=`\tadd object "`+elements[1][i1][0]+` "\n\t\tdistance `+Math.round((elements[1].length*75)+300)+`\n\t\toffset `+Math.round((i1/elements[1].length)*36000)/100+`\n\t\tsprite "`+elements[1][i1][1]+`"\n`
+				}
+			}
+			document.getElementById(`output`).innerHTML+=`#\tShips\n`
+			for(i1=0;i1<elements[1].length;i1++){
+				if(elements[1][i1][1].length){
+					document.getElementById(`output`).innerHTML+=`planet "`+elements[1][i1][0]+` "\n\tbribe 0\n\tgovernment "Arena"\n\ttribute 1\n\t\tfleet "`+elements[1][i1][0]+` "\n\t\tthreshold 0\n`
+					document.getElementById(`output`).innerHTML+=`fleet "`+elements[1][i1][0]+` "\n\tgovernment "Arena"\n\tpersonality "heroic"\n\tvariant\n\t\t"`+elements[1][i1][0]+`"\n`
+				}
 			}
 			break
 		case `omnisSales`:
