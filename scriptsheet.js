@@ -143,7 +143,9 @@ function printOutput(){
 			for(i1=0;i1<elements[2].length;i1++){
 				document.getElementById(`output`).innerHTML+=`\tvisit "`+elements[2][i1]+`"\n`
 			}
-			document.getElementById(`output`).innerHTML+=`#\tSales\noutfitter "everything"\n`
+			break
+		case `omnisSales`:
+			document.getElementById(`output`).innerHTML+=`outfitter "everything"\n`
 			for(i1=0;i1<elements[0].length;i1++){
 				document.getElementById(`output`).innerHTML+=`\t`+elements[0][i1][0]+`\n`
 			}
