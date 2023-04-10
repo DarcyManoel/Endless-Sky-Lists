@@ -113,19 +113,6 @@ function actionCopy(){
 function printOutput(){
 	document.getElementById(`output`).innerHTML=``
 	switch(filter){
-		case `omnis`:
-			document.getElementById(`output`).innerHTML+=`#\tJobs\nmission "resetReputation"\n\tdescription "Reset reputation of all factions to game default."\n\tjob\n\tname "Reset Reputation"\n\ton accept\n`
-			for(i1=0;i1<elements[4].length;i1++){
-				if(elements[4][i1][1].length){
-					document.getElementById(`output`).innerHTML+=`\t\t"reputation: `+elements[4][i1][0]+`" = `+elements[4][i1][1]+`\n`
-				}
-			}
-			document.getElementById(`output`).innerHTML+=`\trepeat\n\tsource\n\t\tgovernment "Omnis"\n`
-			document.getElementById(`output`).innerHTML+=`#\tMapping\nevent "revealMap"\n`
-			for(i1=0;i1<elements[2].length;i1++){
-				document.getElementById(`output`).innerHTML+=`\tvisit "`+elements[2][i1]+`"\n`
-			}
-			break
 		case `omnisArena`:
 			document.getElementById(`output`).innerHTML+=`system "Omnis"\n`
 			for(i1=0;i1<elements[1].length;i1++){
@@ -145,6 +132,15 @@ function printOutput(){
 					document.getElementById(`output`).innerHTML+=`fleet "`+elements[1][i1][0]+` "\n\tgovernment "Arena"\n\tpersonality "heroic"\n\tvariant\n\t\t"`+elements[1][i1][0]+`"\n`
 				}
 			}
+			break
+		case `omnisReputation`:
+			document.getElementById(`output`).innerHTML+=`mission "resetReputation"\n\tdescription "Reset reputation of all factions to game default."\n\tjob\n\tname "Reset Reputation"\n\ton accept\n`
+			for(i1=0;i1<elements[4].length;i1++){
+				if(elements[4][i1][1].length){
+					document.getElementById(`output`).innerHTML+=`\t\t"reputation: `+elements[4][i1][0]+`" = `+elements[4][i1][1]+`\n`
+				}
+			}
+			document.getElementById(`output`).innerHTML+=`\trepeat\n\tsource\n\t\tgovernment "Omnis"\n`
 			break
 		case `omnisSales`:
 			document.getElementById(`output`).innerHTML+=`outfitter "everything"\n`

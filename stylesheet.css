@@ -54,11 +54,14 @@ label:hover{
 #omnisArena{
 	top:20px;
 }
-#omnisSales{
+#omnisReputation{
 	top:40px;
 }
-#noPersons{
+#omnisSales{
 	top:60px;
+}
+#noPersons{
+	top:80px;
 }
 #copy{
 	bottom:20px;
