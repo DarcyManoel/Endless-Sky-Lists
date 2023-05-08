@@ -120,9 +120,15 @@ function printOutput(){
 					elements[1].splice(i1,1)
 				}
 			}
-			for(i1=0;i1<elements[1].length;i1++){
+			var count=48
+			var countTemp=1
+			for(i1=0;i1<elements[1].length;i1++,countTemp++){
 				if(elements[1][i1][1].length){
-					document.getElementById(`output`).innerHTML+=`\tadd object "`+elements[1][i1][0]+` "\n\t\tdistance `+Math.round((elements[1].length*75)+300)+`\n\t\toffset `+Math.round((i1/elements[1].length)*36000)/100+`\n\t\tsprite "`+elements[1][i1][1]+`"\n`
+					document.getElementById(`output`).innerHTML+=`\tadd object "`+elements[1][i1][0]+` "\n\t\tdistance `+Math.round((count*100)-(count*100)/4)+`\n\t\toffset `+Math.round(countTemp*(360/count))+`\n\t\tsprite "`+elements[1][i1][1]+`"\n`
+				}
+				if(countTemp==count){
+					count+=8
+					countTemp=0
 				}
 			}
 			document.getElementById(`output`).innerHTML+=`#\tShips\n`
@@ -133,29 +139,30 @@ function printOutput(){
 				}
 			}
 			break
-		case `omnisReputation`:
-			document.getElementById(`output`).innerHTML+=`mission "resetReputation"\n\tdescription "Reset reputation of all factions to game default."\n\tjob\n\tname "Reset Reputation"\n\ton accept\n`
-			for(i1=0;i1<elements[4].length;i1++){
-				if(elements[4][i1][1].length){
-					document.getElementById(`output`).innerHTML+=`\t\t"reputation: `+elements[4][i1][0]+`" = `+elements[4][i1][1]+`\n`
+		case `omnisArenaFiltered`:
+			document.getElementById(`output`).innerHTML+=`#\tFaction\nsystem " "\n`
+			for(i1=0;i1<elements[1].length;i1++){
+				if(!elements[1][i1][1].length){
+					elements[1].splice(i1,1)
 				}
 			}
-			document.getElementById(`output`).innerHTML+=`\trepeat\n\tsource\n\t\tgovernment "Omnis"\n`
-			break
-		case `omnisSales`:
-			document.getElementById(`output`).innerHTML+=`outfitter "everything"\n`
-			for(i1=0;i1<elements[0].length;i1++){
-				document.getElementById(`output`).innerHTML+=`\t`+elements[0][i1][0]+`\n`
+			var count=12
+			var countTemp=1
+			for(i1=0;i1<elements[1].length;i1++,countTemp++){
+				if(elements[1][i1][1].length){
+					document.getElementById(`output`).innerHTML+=`\tadd object "`+elements[1][i1][0]+`  "\n\t\tdistance `+Math.round((count*100)-(count*100)/4)+`\n\t\toffset `+Math.round(countTemp*(360/count))+`\n\t\tsprite "`+elements[1][i1][1]+`"\n`
+				}
+				if(countTemp==count){
+					count+=8
+					countTemp=0
+				}
 			}
-			document.getElementById(`output`).innerHTML+=`shipyard "everything"\n`
+			document.getElementById(`output`).innerHTML+=`#\t\tShips\n`
 			for(i1=0;i1<elements[1].length;i1++){
-				document.getElementById(`output`).innerHTML+=`\t"`+elements[1][i1][0]+`"\n`
-			}
-			break
-		case `noPersons`:
-			document.getElementById(`output`).innerHTML+=`#\tDisabled\ndisable person\n`
-			for(i1=0;i1<elements[3].length;i1++){
-				document.getElementById(`output`).innerHTML+=`\t"`+elements[3][i1]+`"\n`
+				if(elements[1][i1][1].length){
+					document.getElementById(`output`).innerHTML+=`planet "`+elements[1][i1][0]+`  "\n\tbribe 0\n\tgovernment "Arena"\n\ttribute 1\n\t\tfleet "`+elements[1][i1][0]+` "\n\t\tthreshold 0\n`
+					document.getElementById(`output`).innerHTML+=`fleet "`+elements[1][i1][0]+` "\n\tgovernment "Arena"\n\tpersonality "heroic"\n\tvariant\n\t\t"`+elements[1][i1][0]+`"\n`
+				}
 			}
 			break
 	}
