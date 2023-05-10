@@ -131,16 +131,9 @@ function printOutput(){
 					countTemp=0
 				}
 			}
-			document.getElementById(`output`).innerHTML+=`#\tShips\n`
-			for(i1=0;i1<elements[1].length;i1++){
-				if(elements[1][i1][1].length){
-					document.getElementById(`output`).innerHTML+=`planet "`+elements[1][i1][0]+` "\n\tbribe 0\n\tgovernment "Arena"\n\ttribute 1\n\t\tfleet "`+elements[1][i1][0]+` "\n\t\tthreshold 0\n`
-					document.getElementById(`output`).innerHTML+=`fleet "`+elements[1][i1][0]+` "\n\tgovernment "Arena"\n\tpersonality "heroic"\n\tvariant\n\t\t"`+elements[1][i1][0]+`"\n`
-				}
-			}
 			break
 		case `omnisArenaFiltered`:
-			document.getElementById(`output`).innerHTML+=`#\tFaction\nsystem " "\n`
+			document.getElementById(`output`).innerHTML+=`system " "\n`
 			for(i1=0;i1<elements[1].length;i1++){
 				if(!elements[1][i1][1].length){
 					elements[1].splice(i1,1)
@@ -157,10 +150,12 @@ function printOutput(){
 					countTemp=0
 				}
 			}
-			document.getElementById(`output`).innerHTML+=`#\t\tShips\n`
+			break
+		case `omnisArenaShips`:
+			document.getElementById(`output`).innerHTML+=`#\tShips\n`
 			for(i1=0;i1<elements[1].length;i1++){
 				if(elements[1][i1][1].length){
-					document.getElementById(`output`).innerHTML+=`planet "`+elements[1][i1][0]+`  "\n\tbribe 0\n\tgovernment "Arena"\n\ttribute 1\n\t\tfleet "`+elements[1][i1][0]+` "\n\t\tthreshold 0\n`
+					document.getElementById(`output`).innerHTML+=`planet "`+elements[1][i1][0]+` "\n\tbribe 0\n\tgovernment "Arena"\n\ttribute 1\n\t\tfleet "`+elements[1][i1][0]+` "\n\t\tthreshold 0\nplanet "`+elements[1][i1][0]+`  "\n\tbribe 0\n\tgovernment "Arena"\n\ttribute 1\n\t\tfleet "`+elements[1][i1][0]+` "\n\t\tthreshold 0\n`
 					document.getElementById(`output`).innerHTML+=`fleet "`+elements[1][i1][0]+` "\n\tgovernment "Arena"\n\tpersonality "heroic"\n\tvariant\n\t\t"`+elements[1][i1][0]+`"\n`
 				}
 			}
