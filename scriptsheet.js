@@ -50,7 +50,7 @@ function actionUpload(that){
 				//	Ships
 				if(lines[i2].startsWith(`ship `)){
 					if(!lines[i2].slice(5).includes(`" "`)){
-						elements[1].push([lines[i2].slice(5).replaceAll(`"`,``),[],[]])
+						elements[1].push([lines[i2].slice(5).replaceAll(`"`,``).replaceAll("`",``),[],[]])
 						for(i3=i2+1;i3<lines.length;i3++){
 							if(!lines[i3].startsWith(`\t`)){
 								break
